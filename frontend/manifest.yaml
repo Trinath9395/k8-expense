@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
         - name: nginx
-          image: trinathr/backend:1.0.0
+          image: trinathr/frontend:1.0.0
           
 --- 
 kind: Service
