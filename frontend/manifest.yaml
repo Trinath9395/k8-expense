@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: backend
+  name: frontend
   namespace: expense
   labels:
-    app: backend
-    tier: backend
+    app: frontend
+    tier: web
     project: expense  
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: backend
-      tier: backend 
+      app: frontend
+      tier: web
       project: expense 
   template:
     metadata:
       labels:
-        app: backend
-        tier: backend
+        app: frontend
+        tier: web
         project: expense 
     spec:
       containers:
@@ -29,14 +29,15 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: backend
+  name: frontend
   namespace: expense 
 spec:
+  type: LoadBalancer 
   selector: # labels are used as selectors
-    app: backend
-    tier: backend 
+    app: frontend
+    tier: web
     project: expense
   ports:
   - protocol: TCP
-    port: 8080 # service port
-    targetPort: 8080
+    port: 80 # service port
+    targetPort: 80
